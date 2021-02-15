@@ -1,10 +1,12 @@
 package com.mbugajski.springdemo.hib.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,13 +24,23 @@ public class InstructorDetail {
 	@Column(name = "hobby")
 	private String hobby;
 
-	public InstructorDetail() {
+	@OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+	private Instructor instructor;
 
+	public InstructorDetail() {
 	}
 
 	public InstructorDetail(String youtubeChannel, String hobby) {
 		this.youtubeChannel = youtubeChannel;
 		this.hobby = hobby;
+	}
+
+	public Instructor getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
 	}
 
 	public int getId() {
