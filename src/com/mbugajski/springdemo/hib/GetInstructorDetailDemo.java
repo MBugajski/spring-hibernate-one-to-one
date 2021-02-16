@@ -29,7 +29,12 @@ public class GetInstructorDetailDemo {
 			System.out.println("the associated instructor: " + tempInstructorDetail.getInstructor());
 
 			session.getTransaction().commit();
-		} finally {
+		} 
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+		finally {
+			session.close();
 			factory.close();
 		}
 	}

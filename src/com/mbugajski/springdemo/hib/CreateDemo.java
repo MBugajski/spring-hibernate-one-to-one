@@ -32,7 +32,12 @@ public class CreateDemo {
 //			No need to save tempInstructorDetail due to CascadeType.ALL setting in Instructor class
 //			session.save(tempInstructorDetail);
 			session.getTransaction().commit();
-		} finally {
+		} 
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+		finally {
+			session.close();
 			factory.close();
 		}
 	}

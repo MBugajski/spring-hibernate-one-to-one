@@ -32,7 +32,12 @@ public class DeleteDemo {
 			}
 //			This will also delete the InstructorDetail object linked to tempInstructor due to CascadeType.ALL settings.
 			session.getTransaction().commit();
-		} finally {
+		} 
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+		finally {
+			session.close();
 			factory.close();
 		}
 	}
