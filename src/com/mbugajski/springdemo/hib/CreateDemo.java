@@ -12,8 +12,7 @@ public class CreateDemo {
 
 	public static void main(String[] args) {
 
-		SessionFactory factory = new Configuration()
-				.configure("hibernate.cfg.xml")
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Instructor.class)
 				.addAnnotatedClass(InstructorDetail.class)
 				.buildSessionFactory();
@@ -21,22 +20,21 @@ public class CreateDemo {
 		Session session = factory.getCurrentSession();
 
 		try {
-			Instructor tempInstructor= new Instructor("Adam", "Smith", "adamsmith@gmail.com");
-			
-			InstructorDetail tempInstructorDetail = new InstructorDetail("https://www.youtube.com/c/SmithClasses", "smithing");
-			
+			Instructor tempInstructor = new Instructor("Adam", "Smith", "adamsmith@gmail.com");
+
+			InstructorDetail tempInstructorDetail = new InstructorDetail("https://www.youtube.com/c/SmithClasses",
+					"smithing");
+
 			tempInstructor.setInstructorDetail(tempInstructorDetail);
-			
+
 			session.beginTransaction();
 			session.save(tempInstructor);
 //			No need to save tempInstructorDetail due to CascadeType.ALL setting in Instructor class
 //			session.save(tempInstructorDetail);
 			session.getTransaction().commit();
-		} 
-		catch (Exception exc) {
+		} catch (Exception exc) {
 			exc.printStackTrace();
-		}
-		finally {
+		} finally {
 			session.close();
 			factory.close();
 		}

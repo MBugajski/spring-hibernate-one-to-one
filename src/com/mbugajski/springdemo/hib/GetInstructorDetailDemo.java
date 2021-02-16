@@ -14,7 +14,8 @@ public class GetInstructorDetailDemo {
 
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Instructor.class)
-				.addAnnotatedClass(InstructorDetail.class).buildSessionFactory();
+				.addAnnotatedClass(InstructorDetail.class)
+				.buildSessionFactory();
 
 		Session session = factory.getCurrentSession();
 
@@ -29,11 +30,9 @@ public class GetInstructorDetailDemo {
 			System.out.println("the associated instructor: " + tempInstructorDetail.getInstructor());
 
 			session.getTransaction().commit();
-		} 
-		catch (Exception exc) {
+		} catch (Exception exc) {
 			exc.printStackTrace();
-		}
-		finally {
+		} finally {
 			session.close();
 			factory.close();
 		}

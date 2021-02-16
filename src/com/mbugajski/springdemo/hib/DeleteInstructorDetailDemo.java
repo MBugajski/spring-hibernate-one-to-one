@@ -8,7 +8,7 @@ import com.mbugajski.springdemo.hib.entity.Instructor;
 import com.mbugajski.springdemo.hib.entity.InstructorDetail;
 import com.mbugajski.springdemo.hib.entity.Student;
 
-public class DeleteDemo {
+public class DeleteInstructorDetailDemo {
 
 	public static void main(String[] args) {
 
@@ -20,16 +20,18 @@ public class DeleteDemo {
 		Session session = factory.getCurrentSession();
 
 		try {
-
 			session.beginTransaction();
+
 			int theId = 1;
+			InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, theId);
 
-			Instructor tempInstructor = session.get(Instructor.class, theId);
+			System.out.println("tempInstructorDetail: " + tempInstructorDetail);
 
-			if (tempInstructor != null) {
-				session.delete(tempInstructor);
-			}
-//			This will also delete the InstructorDetail object linked to tempInstructor due to CascadeType.ALL settings.
+			System.out.println("the associated instructor: " + tempInstructorDetail.getInstructor());
+
+			System.out.println("Deleting tempInstructorDetail: " + tempInstructorDetail);
+			session.delete(tempInstructorDetail);
+
 			session.getTransaction().commit();
 		} catch (Exception exc) {
 			exc.printStackTrace();
