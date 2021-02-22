@@ -15,7 +15,7 @@ public class InstructorDetail {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "is")
+	@Column(name = "id")
 	private int id;
 
 	@Column(name = "youtube_channel")
